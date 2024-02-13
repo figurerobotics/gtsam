@@ -25,6 +25,43 @@ set(gtsam_srcs)
 message(STATUS "Building 3rdparty")
 add_subdirectory(3rdparty)
 
+# Function for automatically assigning source folders
+function(gtsam_assign_source_folders)
+  set(FILES ${ARGV})
+  foreach(file ${FILES})
+    file(RELATIVE_PATH relative_file "${CMAKE_CURRENT_SOURCE_DIR}" "${file}")
+    get_filename_component(relative_path "${relative_file}" PATH)
+    file(TO_NATIVE_PATH "${relative_path}" relative_path)
+    source_group("${relative_path}" FILES "${file}")
+  endforeach()
+endfunction()
+
+# Find and assign all source and header files
+function(gtsam_assign_all_source_folders)
+  file(GLOB_RECURSE all_c_srcs "*.c")
+  file(GLOB_RECURSE all_cpp_srcs "*.cpp")
+  file(GLOB_RECURSE all_headers "*.h")
+  gtsam_assign_source_folders("${all_c_srcs};${all_cpp_srcs};${all_headers}")
+endfunction()
+
+# Applies the per-config build flags to the given target (e.g. gtsam, wrap_lib)
+function(gtsam_apply_build_flags target_name_)
+  # To enable C++11: the use of target_compile_features() is preferred since
+  # it will be not in conflict with a more modern C++ standard, if used in a
+  # client program.
+  if (NOT "${GTSAM_COMPILE_FEATURES_PUBLIC}" STREQUAL "")
+  	target_compile_features(${target_name_} PUBLIC ${GTSAM_COMPILE_FEATURES_PUBLIC})
+  endif()
+
+  target_compile_definitions(${target_name_} PRIVATE ${GTSAM_COMPILE_DEFINITIONS_PRIVATE})
+  target_compile_definitions(${target_name_} PUBLIC ${GTSAM_COMPILE_DEFINITIONS_PUBLIC})
+  if (NOT "${GTSAM_COMPILE_OPTIONS_PUBLIC}" STREQUAL "")
+    target_compile_options(${target_name_} PUBLIC ${GTSAM_COMPILE_OPTIONS_PUBLIC})
+  endif()
+  target_compile_options(${target_name_} PRIVATE ${GTSAM_COMPILE_OPTIONS_PRIVATE})
+
+endfunction(gtsam_apply_build_flags)
+
 set (3rdparty_srcs
  ${eigen_headers} # Set by 3rdparty/CMakeLists.txt
  ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/CCOLAMD/Source/ccolamd.c
