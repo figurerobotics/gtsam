@@ -132,8 +132,8 @@ if(GTSAM_SUPPORT_NESTED_DISSECTION)
 endif()
 
 # Versions
-set(gtsam_version   ${GTSAM_VERSION_MAJOR}.${GTSAM_VERSION_MINOR}.${GTSAM_VERSION_PATCH})
-set(gtsam_soversion ${GTSAM_VERSION_MAJOR})
+set(gtsam_version   4.2.0)
+set(gtsam_soversion 4)
 message(STATUS "GTSAM Version: ${gtsam_version}")
 message(STATUS "Install prefix: ${CMAKE_INSTALL_PREFIX}")
 
