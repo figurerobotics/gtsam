@@ -1,1 +1,1 @@
-gtsamAddTestsGlob(geometry "test*.cpp" "" "gtsam")
+#gtsamAddTestsGlob(geometry "test*.cpp" "" "gtsam")

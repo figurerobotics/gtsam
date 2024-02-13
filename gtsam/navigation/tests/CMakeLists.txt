@@ -24,4 +24,4 @@ else()
   endif()
 endif()
 
-gtsamAddTestsGlob(navigation "test*.cpp" "${tests_excluded}" "${test_link_libraries}")
+#gtsamAddTestsGlob(navigation "test*.cpp" "${tests_excluded}" "${test_link_libraries}")

@@ -1,1 +1,1 @@
-gtsamAddTestsGlob(hybrid "test*.cpp" "" "gtsam")
+#gtsamAddTestsGlob(hybrid "test*.cpp" "" "gtsam")

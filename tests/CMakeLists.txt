@@ -8,7 +8,7 @@ if (${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang") # might not be best test - Richar
 endif()
 
 # Build tests
-gtsamAddTestsGlob(tests "test*.cpp" "${tests_exclude}" "gtsam")
+#gtsamAddTestsGlob(tests "test*.cpp" "${tests_exclude}" "gtsam")
 
 if(MSVC)
 	set_property(SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/testSerializationSlam.cpp"

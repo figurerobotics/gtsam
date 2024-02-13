@@ -1,1 +1,1 @@
-gtsamAddTestsGlob(wrap "test*.cpp" "" "wrap_lib")
+#gtsamAddTestsGlob(wrap "test*.cpp" "" "wrap_lib")

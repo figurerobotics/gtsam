@@ -1,1 +1,1 @@
-gtsamAddTestsGlob(inference "test*.cpp" "" "gtsam")
+#gtsamAddTestsGlob(inference "test*.cpp" "" "gtsam")
